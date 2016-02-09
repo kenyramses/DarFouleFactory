@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFouleurTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListFouleurEmpty}" rendered="#{fouleurController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{fouleurController.items.rowCount > 0}">
+                    <h:outputText value="#{fouleurController.pagination.pageFirstItem + 1}..#{fouleurController.pagination.pageLastItem + 1}/#{fouleurController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{fouleurController.previous}" value="#{bundle.Previous} #{fouleurController.pagination.pageSize}" rendered="#{fouleurController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{fouleurController.next}" value="#{bundle.Next} #{fouleurController.pagination.pageSize}" rendered="#{fouleurController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{fouleurController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFouleurTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFouleurTitle_nom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFouleurTitle_prenom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.prenom}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFouleurTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFouleurTitle_datenaiss}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datenaiss}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFouleurTitle_dateinsc}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateinsc}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFouleurTitle_adress}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.adress}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFouleurTitle_pseudo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pseudo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFouleurTitle_password}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.password}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{fouleurController.prepareView}" value="#{bundle.ListFouleurViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{fouleurController.prepareEdit}" value="#{bundle.ListFouleurEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{fouleurController.destroy}" value="#{bundle.ListFouleurDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{fouleurController.prepareCreate}" value="#{bundle.ListFouleurCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListFouleurIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
