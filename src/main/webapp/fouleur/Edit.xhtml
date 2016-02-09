@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFouleurTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFouleurLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{fouleurController.selected.id}" title="#{bundle.EditFouleurTitle_id}" required="true" requiredMessage="#{bundle.EditFouleurRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditFouleurLabel_nom}" for="nom" />
+                    <h:inputTextarea rows="4" cols="30" id="nom" value="#{fouleurController.selected.nom}" title="#{bundle.EditFouleurTitle_nom}" required="true" requiredMessage="#{bundle.EditFouleurRequiredMessage_nom}"/>
+                    <h:outputLabel value="#{bundle.EditFouleurLabel_prenom}" for="prenom" />
+                    <h:inputTextarea rows="4" cols="30" id="prenom" value="#{fouleurController.selected.prenom}" title="#{bundle.EditFouleurTitle_prenom}" required="true" requiredMessage="#{bundle.EditFouleurRequiredMessage_prenom}"/>
+                    <h:outputLabel value="#{bundle.EditFouleurLabel_email}" for="email" />
+                    <h:inputTextarea rows="4" cols="30" id="email" value="#{fouleurController.selected.email}" title="#{bundle.EditFouleurTitle_email}" required="true" requiredMessage="#{bundle.EditFouleurRequiredMessage_email}"/>
+                    <h:outputLabel value="#{bundle.EditFouleurLabel_datenaiss}" for="datenaiss" />
+                    <h:inputText id="datenaiss" value="#{fouleurController.selected.datenaiss}" title="#{bundle.EditFouleurTitle_datenaiss}" required="true" requiredMessage="#{bundle.EditFouleurRequiredMessage_datenaiss}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFouleurLabel_dateinsc}" for="dateinsc" />
+                    <h:inputText id="dateinsc" value="#{fouleurController.selected.dateinsc}" title="#{bundle.EditFouleurTitle_dateinsc}" required="true" requiredMessage="#{bundle.EditFouleurRequiredMessage_dateinsc}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFouleurLabel_adress}" for="adress" />
+                    <h:inputTextarea rows="4" cols="30" id="adress" value="#{fouleurController.selected.adress}" title="#{bundle.EditFouleurTitle_adress}" required="true" requiredMessage="#{bundle.EditFouleurRequiredMessage_adress}"/>
+                    <h:outputLabel value="#{bundle.EditFouleurLabel_pseudo}" for="pseudo" />
+                    <h:inputText id="pseudo" value="#{fouleurController.selected.pseudo}" title="#{bundle.EditFouleurTitle_pseudo}" required="true" requiredMessage="#{bundle.EditFouleurRequiredMessage_pseudo}"/>
+                    <h:outputLabel value="#{bundle.EditFouleurLabel_password}" for="password" />
+                    <h:inputTextarea rows="4" cols="30" id="password" value="#{fouleurController.selected.password}" title="#{bundle.EditFouleurTitle_password}" required="true" requiredMessage="#{bundle.EditFouleurRequiredMessage_password}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{fouleurController.update}" value="#{bundle.EditFouleurSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFouleurViewLink}"/>
+                <br />
+                <h:commandLink action="#{fouleurController.prepareList}" value="#{bundle.EditFouleurShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFouleurIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

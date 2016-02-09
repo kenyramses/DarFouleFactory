@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFouleurTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFouleurLabel_id}"/>
+                    <h:outputText value="#{fouleurController.selected.id}" title="#{bundle.ViewFouleurTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewFouleurLabel_nom}"/>
+                    <h:outputText value="#{fouleurController.selected.nom}" title="#{bundle.ViewFouleurTitle_nom}"/>
+                    <h:outputText value="#{bundle.ViewFouleurLabel_prenom}"/>
+                    <h:outputText value="#{fouleurController.selected.prenom}" title="#{bundle.ViewFouleurTitle_prenom}"/>
+                    <h:outputText value="#{bundle.ViewFouleurLabel_email}"/>
+                    <h:outputText value="#{fouleurController.selected.email}" title="#{bundle.ViewFouleurTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewFouleurLabel_datenaiss}"/>
+                    <h:outputText value="#{fouleurController.selected.datenaiss}" title="#{bundle.ViewFouleurTitle_datenaiss}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFouleurLabel_dateinsc}"/>
+                    <h:outputText value="#{fouleurController.selected.dateinsc}" title="#{bundle.ViewFouleurTitle_dateinsc}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFouleurLabel_adress}"/>
+                    <h:outputText value="#{fouleurController.selected.adress}" title="#{bundle.ViewFouleurTitle_adress}"/>
+                    <h:outputText value="#{bundle.ViewFouleurLabel_pseudo}"/>
+                    <h:outputText value="#{fouleurController.selected.pseudo}" title="#{bundle.ViewFouleurTitle_pseudo}"/>
+                    <h:outputText value="#{bundle.ViewFouleurLabel_password}"/>
+                    <h:outputText value="#{fouleurController.selected.password}" title="#{bundle.ViewFouleurTitle_password}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{fouleurController.destroyAndView}" value="#{bundle.ViewFouleurDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFouleurEditLink}"/>
+                <br />
+                <h:commandLink action="#{fouleurController.prepareCreate}" value="#{bundle.ViewFouleurCreateLink}" />
+                <br />
+                <h:commandLink action="#{fouleurController.prepareList}" value="#{bundle.ViewFouleurShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFouleurIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
