@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cours.beans;
+package com.cours.session;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 /**
  *
  * @author gassama
+ * @param <T>
  */
 public abstract class AbstractFacade<T> {
 
@@ -60,5 +61,9 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
+    
+     public T findByPseudoPassword(String pseudo, String Password) {
+    return getEntityManager().find(entityClass,pseudo);
+     }
     
 }

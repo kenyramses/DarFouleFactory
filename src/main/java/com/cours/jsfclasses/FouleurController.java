@@ -3,7 +3,7 @@ package com.cours.jsfclasses;
 import com.cours.entities.Fouleur;
 import com.cours.jsfclasses.util.JsfUtil;
 import com.cours.jsfclasses.util.PaginationHelper;
-import com.cours.beans.FouleurFacade;
+import com.cours.session.FouleurFacade;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ public class FouleurController implements Serializable {
     private Fouleur current;
     private DataModel items = null;
     @EJB
-    private com.cours.beans.FouleurFacade ejbFacade;
+    private com.cours.session.FouleurFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
 

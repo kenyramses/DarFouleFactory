@@ -47,7 +47,9 @@
                 <div class="panel panel-info" >
                     <div class="panel-heading">
                         <div class="panel-title">Connectez Vous</div>
-                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Mot de Passe oublie ?</a></div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px">
+                            <h:link value="Mot de Passe oublie ?" outcome="login_turkeur"/>
+                        </div>
                     </div>    
 
                     <div style="padding-top:30px" class="panel-body" >
@@ -59,18 +61,18 @@
 
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <h:inputText id="username" class="form-control" value="#{login.username}"/>
+                                <h:inputText id="username" class="form-control" value="#{loginTurkeur.username}"/>
                                 <h:message for="username"></h:message>
                             </div>
 
                             <div style="margin-bottom: 25px" class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <h:inputSecret id="password" class="form-control" value="#{login.password}"></h:inputSecret>
+                                <h:inputSecret id="password" class="form-control" value="#{loginTurkeur.password}"></h:inputSecret>
                                 <h:message for="password"></h:message>
                             </div>
                             <div style="margin-top:10px" class="form-group">
                                 <div class="col-sm-12 controls" align = "center">
-                                    <h:commandButton action="#{login.password}"
+                                    <h:commandButton action="#{loginTurkeur.validateUsernamePassword}" class="btn btn-success"
                                                      value="Login"></h:commandButton>
 
                                 </div>

@@ -14,17 +14,17 @@ import javax.faces.bean.ManagedBean;
  * @author gassama
  */
 @ManagedBean
-@Named(value = "login")
+@Named(value = "loginClient")
 @Dependent
-public class Login {
+public class LoginClient {
 
-    private String username;
+   private String username;
     private String password;
 
       /**
      * Creates a new instance of Login
      */
-    public Login() {
+    public LoginClient() {
     }
     
     public String getUsername() {
@@ -42,7 +42,4 @@ public class Login {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-  
-    
 }

@@ -8,11 +8,11 @@ package com.cours.beans;
 import com.cours.entities.Fouleur;
 import com.cours.session.FouleurFacade;
 import com.cours.session.FouleurFacadeLocal;
+import javax.inject.Named;
+import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -20,13 +20,19 @@ import javax.servlet.http.HttpSession;
  * @author gassama
  */
 @ManagedBean
-@SessionScoped
-@Named(value = "authentification")
-public class Authentification {
-    
-    private String username;
-    private String passwd;
+@Named(value = "loginTurkeur")
+@Dependent
+public class LoginTurkeur {
 
+    private String username;
+    private String password;
+
+      /**
+     * Creates a new instance of Login
+     */
+    public LoginTurkeur() {
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -35,38 +41,32 @@ public class Authentification {
         this.username = username;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
     
-     public String validateUsernamePassword() {
+  public String validateUsernamePassword() {
          Fouleur f = new Fouleur();
          f.setPseudo(username);
-         f.setPassword(passwd);
+         f.setPassword(password);
          FouleurFacadeLocal fc = new FouleurFacade();
         Fouleur foule = fc.find(f);
         if (foule != null) {
             HttpSession session = SessionBean.getSession();
             session.setAttribute("pseudo", "");
-            return "Acceuil_Fouleur";
+            return "Acceuil_fouleur";
         } else {
             FacesContext.getCurrentInstance().addMessage(
                     null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN,
                             "Incorrect Username and Passowrd",
                             "Please enter correct username and Password"));
-            return "login";
+            return "login_turkeur";
         }
     }
- /*
-    //logout event, invalidate session
-    public String logout() {
-        HttpSession session = SessionBean.getSession();
-        session.invalidate();
-        return "login";
-    }*/
+    
 }
