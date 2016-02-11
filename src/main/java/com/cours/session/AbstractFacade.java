@@ -61,9 +61,4 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
-    
-     public T findByPseudoPassword(String pseudo, String Password) {
-    return getEntityManager().find(entityClass,pseudo);
-     }
-    
 }

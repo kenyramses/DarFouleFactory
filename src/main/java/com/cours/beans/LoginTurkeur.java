@@ -5,9 +5,8 @@
  */
 package com.cours.beans;
 
-import com.cours.entities.Fouleur;
-import com.cours.session.FouleurFacade;
 import com.cours.session.FouleurFacadeLocal;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
@@ -26,7 +25,8 @@ public class LoginTurkeur {
 
     private String username;
     private String password;
-
+    @EJB
+    FouleurFacadeLocal ffi;
       /**
      * Creates a new instance of Login
      */
@@ -49,13 +49,9 @@ public class LoginTurkeur {
         this.password = password;
     }
     
-  public String validateUsernamePassword() {
-         Fouleur f = new Fouleur();
-         f.setPseudo(username);
-         f.setPassword(password);
-         FouleurFacadeLocal fc = new FouleurFacade();
-        Fouleur foule = fc.find(f);
-        if (foule != null) {
+    public String validateUsernamePassword() {
+        
+        if (ffi.findByPseudoPassword(username, password)) {
             HttpSession session = SessionBean.getSession();
             session.setAttribute("pseudo", "");
             return "Acceuil_fouleur";

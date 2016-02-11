@@ -24,7 +24,7 @@ public interface FouleurFacadeLocal {
 
     Fouleur find(Object id);
 
-    Fouleur findByPseudoPassword(String pseudo, String Password);
+    boolean findByPseudoPassword(String pseudo, String Password);
     
     List<Fouleur> findAll();
 

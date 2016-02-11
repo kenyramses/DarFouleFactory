@@ -6,6 +6,7 @@
 package com.cours.session;
 
 import com.cours.entities.Fouleur;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -31,9 +32,21 @@ public class FouleurFacade extends AbstractFacade<Fouleur> implements FouleurFac
     }
 
     
-    public Fouleur findByPseudoPassword(String pseudo, String Password) {
-        Fouleur f = (Fouleur)em.createNamedQuery("findByPseudoandPassword").getSingleResult();
-        return  f;
-     }
+    
+    @Override
+    public boolean findByPseudoPassword(String pseudo, String Password) {
+        
+       Query query = em.createNativeQuery("SELECT * FROM Fouleur f WHERE f.pseudo = "+pseudo+" and f.password = "+Password);
+
+           List<Fouleur> results = query.getResultList();
+
+        if ( !results.isEmpty() ) {
+
+           return true;
+
+        }
+        
+        return false;
+    }
     
 }
