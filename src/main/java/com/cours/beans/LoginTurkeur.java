@@ -65,4 +65,12 @@ public class LoginTurkeur {
         }
     }
     
+     /*
+    //logout event, invalidate session
+    public String logout() {
+        HttpSession session = SessionBean.getSession();
+        session.invalidate();
+        return "login";
+    }*/
+    
 }
